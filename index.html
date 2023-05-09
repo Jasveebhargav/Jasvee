@@ -34,12 +34,12 @@
 	    if ('OTPCredential' in window) {
   window.addEventListener('DOMContentLoaded', e => {
     const input = document.querySelector('input[autocomplete="one-time-code"]');
-    const signal = new AbortController();
+    const ac = new AbortController();
 	setTimeout(() => {
-		signal.abort();
+		ac.abort();
 	}, 1 * 60 * 1000);
 	
-	alert("test start");
+	alert("start----");
 	
     navigator.credentials.get({
       otp: { transport:['sms'] },
