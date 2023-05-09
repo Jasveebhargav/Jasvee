@@ -26,15 +26,15 @@
     <div style="border:1px solid; padding: 5px; 10px; margin: 10px 0;">
       <form action="/">
         Enter OTP here:
-        <input type="text" autocomplete="one-time-code" inputmode="numeric" />
-	<input type="submit"> 
+        <input autocomplete="off"  type="tel" />
+	
       </form>
     </div>
     
     <script>
 	if ('OTPCredential' in window) {
   window.addEventListener('DOMContentLoaded', e => {
-    const input = document.querySelector('input[autocomplete="one-time-code"]');
+    const input = document.querySelector('input[autocomplete="off"]');
     if (!input) return;
     const ac = new AbortController();
     const form = input.closest('form');
