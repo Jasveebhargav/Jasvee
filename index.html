@@ -31,25 +31,30 @@
     </div>
     
     <script>
-	    if ('OTPCredential' in window) {
-  window.addEventListener('DOMContentLoaded', e => {
+	   if ("OTPCredential" in window) {
+  window.addEventListener("DOMContentLoaded", (e) => {
     const input = document.querySelector('input[autocomplete="one-time-code"]');
+    if (!input) return;
     const ac = new AbortController();
-	setTimeout(() => {
-		ac.abort();
-	}, 1 * 60 * 1000);
-	
-	alert("start----");
-	
-    navigator.credentials.get({
-      otp: { transport:['sms'] },
-      signal: ac.signal
-    }).then(otp => {
-      input.value = otp.code;
-      alert(otp.code);
-    }).catch(err => {
-      console.log(err);
-    });
+    const form = input.closest("form");
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        ac.abort();
+      });
+    }
+    navigator.credentials
+      .get({
+        otp: { transport: ["sms"] },
+        signal: ac.signal,
+      })
+      .then((otp) => {
+	    alert(otp);
+        input.value = otp.code;
+        if (form) form.submit();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   });
 }
     </script>
