@@ -43,10 +43,12 @@ if ('OTPCredential' in window) {
         ac.abort();
       });
     }
+	  alert("before navigator");
     navigator.credentials.get({
       otp: { transport:['sms'] },
       signal: ac.signal
     }).then(otp => {
+	    alert(otp);
       input.value = otp.code;
       if (form) form.submit();
     }).catch(err => {
