@@ -35,7 +35,10 @@
 if ('OTPCredential' in window) {
   window.addEventListener('DOMContentLoaded', e => {
     const input = document.querySelector('input[autocomplete="one-time-code"]');
+	  alert("before input");
+	  alert(input);
     if (!input) return;
+	    alert("after input");
     const ac = new AbortController();
     const form = input.closest('form');
     if (form) {
@@ -43,7 +46,7 @@ if ('OTPCredential' in window) {
         ac.abort();
       });
     }
-	  alert("before navigator");
+  alert("before navigator");
     navigator.credentials.get({
       otp: { transport:['sms'] },
       signal: ac.signal
