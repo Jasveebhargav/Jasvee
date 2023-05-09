@@ -17,15 +17,16 @@
   <body>
     
     <div>
-      Send an SMS from a different device t
+      Send an SMS from a different device 
+	    Your OTP is: 123456.
+            @www.example.com #123456
       
     </div>
     <div style="border:1px solid; padding: 5px; 10px; margin: 10px 0;">
-      <form action="/">
-        Enter OTP here:
-        <input autocomplete="off"  type="tel" />
-	
-      </form>
+      <form>
+        <input autocomplete="one-time-code" required/>
+        <input type="submit">
+     </form>
     </div>
 	  
 	  
@@ -33,7 +34,7 @@
 <script>
 if ('OTPCredential' in window) {
   window.addEventListener('DOMContentLoaded', e => {
-    const input = document.querySelector("input[off"]');
+    const input = document.querySelector('input[autocomplete="one-time-code"]');
     if (!input) return;
     const ac = new AbortController();
     const form = input.closest('form');
@@ -52,8 +53,7 @@ if ('OTPCredential' in window) {
       console.log(err);
     });
   });
-}
-</script>
+}</script>
        
   </body>
 </html>
